@@ -1,6 +1,6 @@
 # SeguroFlow
 
-SeguroFlow é um projeto de estudo criado para praticar uma stack usada em aplicações modernas do mercado segurador.
+SeguroFlow é um projeto de estudo criado para praticar uma stack usada em aplicações reais do mercado segurador.
 
 A ideia é construir, de forma incremental, uma aplicação com frontend em React/TypeScript, API principal em Java/Spring Boot, microserviço em Python/FastAPI, banco SQL Server e ambiente local com Docker Compose.
 
