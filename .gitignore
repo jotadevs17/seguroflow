@@ -1,0 +1,27 @@
+# Environment files
+.env
+.env.local
+
+# Java / Spring Boot
+target/
+build/
+.gradle/
+
+# Node / React
+node_modules/
+dist/
+.vite/
+
+# Python / FastAPI
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# IDEs
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
