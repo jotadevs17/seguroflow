@@ -21,6 +21,7 @@ __pycache__/
 # IDEs
 .idea/
 .vscode/
+*.iml
 
 # OS files
 .DS_Store
