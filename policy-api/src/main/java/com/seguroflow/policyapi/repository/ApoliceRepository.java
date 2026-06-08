@@ -1,4 +1,7 @@
 package com.seguroflow.policyapi.repository;
 
-public interface ApoliceRepository {
+import com.seguroflow.policyapi.domain.Apolice;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ApoliceRepository extends JpaRepository<Apolice, Long> {
 }
