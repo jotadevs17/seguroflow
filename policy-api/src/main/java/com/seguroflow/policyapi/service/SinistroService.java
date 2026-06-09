@@ -29,6 +29,11 @@ public class SinistroService {
         Apolice apolice = apoliceRepository.findById(dto.getApoliceId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Apolice nao encontrada"));
 
+        if (dto.getDataOcorrencia().isBefore(apolice.getDataInicio())
+                || dto.getDataOcorrencia().isAfter(apolice.getDataFim())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data do sinistro fora da vigencia da apolice");
+        }
+
         Sinistro sinistro = new Sinistro();
         sinistro.setDescricao(dto.getDescricao());
         sinistro.setValorEstimado(dto.getValorEstimado());
