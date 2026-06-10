@@ -1,6 +1,5 @@
 package com.seguroflow.policyapi.domain.dto;
 
-import com.seguroflow.policyapi.domain.enums.NivelRisco;
 import com.seguroflow.policyapi.domain.enums.StatusSinistro;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,21 +24,17 @@ public class SinistroDTO {
     private StatusSinistro status;
 
     @NotNull
-    private NivelRisco nivelRisco;
-
-    @NotNull
     private Long apoliceId;
 
     public SinistroDTO() {
     }
 
     public SinistroDTO(String descricao, BigDecimal valorEstimado, LocalDate dataOcorrencia,
-                       StatusSinistro status, NivelRisco nivelRisco, Long apoliceId) {
+                       StatusSinistro status, Long apoliceId) {
         this.descricao = descricao;
         this.valorEstimado = valorEstimado;
         this.dataOcorrencia = dataOcorrencia;
         this.status = status;
-        this.nivelRisco = nivelRisco;
         this.apoliceId = apoliceId;
     }
 
@@ -73,14 +68,6 @@ public class SinistroDTO {
 
     public void setStatus(StatusSinistro status) {
         this.status = status;
-    }
-
-    public NivelRisco getNivelRisco() {
-        return nivelRisco;
-    }
-
-    public void setNivelRisco(NivelRisco nivelRisco) {
-        this.nivelRisco = nivelRisco;
     }
 
     public Long getApoliceId() {

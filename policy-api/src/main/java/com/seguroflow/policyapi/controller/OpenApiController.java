@@ -162,7 +162,6 @@ public class OpenApiController {
                         "valorEstimado", numberSchema(),
                         "dataOcorrencia", dateSchema(),
                         "status", enumSchema("ABERTO", "EM_ANALISE", "APROVADO", "NEGADO"),
-                        "nivelRisco", enumSchema("BAIXO", "MEDIO", "ALTO"),
                         "apoliceId", longSchema()
                 ))),
                 Map.entry("SinistroResponseDTO", objectSchema(Map.of(
