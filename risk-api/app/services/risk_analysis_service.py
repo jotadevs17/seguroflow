@@ -6,20 +6,20 @@ def analyze_risk(request: RiskAnalysisRequest) -> RiskAnalysisResponse:
     reasons: list[str] = []
 
     if request.claimAmount > request.insuredAmount * 0.7:
-        reasons.append("Claim amount is greater than 70% of the insured amount")
-        return RiskAnalysisResponse(riskLevel=RiskLevel.HIGH, reasons=reasons)
+        reasons.append("O valor do sinistro e maior que 70% do valor segurado")
+        return RiskAnalysisResponse(riskLevel=RiskLevel.ALTO, reasons=reasons)
 
     if request.previousClaims >= 3:
-        reasons.append("Customer has 3 or more previous claims")
-        return RiskAnalysisResponse(riskLevel=RiskLevel.HIGH, reasons=reasons)
+        reasons.append("O cliente possui 3 ou mais sinistros anteriores")
+        return RiskAnalysisResponse(riskLevel=RiskLevel.ALTO, reasons=reasons)
 
     if request.daysUntilPolicyExpiration < 30:
-        reasons.append("Policy expires in less than 30 days")
-        return RiskAnalysisResponse(riskLevel=RiskLevel.MEDIUM, reasons=reasons)
+        reasons.append("A apolice vence em menos de 30 dias")
+        return RiskAnalysisResponse(riskLevel=RiskLevel.MEDIO, reasons=reasons)
 
     if claim_ratio >= 0.4:
-        reasons.append("Claim amount is between 40% and 70% of the insured amount")
-        return RiskAnalysisResponse(riskLevel=RiskLevel.MEDIUM, reasons=reasons)
+        reasons.append("O valor do sinistro esta entre 40% e 70% do valor segurado")
+        return RiskAnalysisResponse(riskLevel=RiskLevel.MEDIO, reasons=reasons)
 
-    reasons.append("No relevant risk factor was identified")
-    return RiskAnalysisResponse(riskLevel=RiskLevel.LOW, reasons=reasons)
+    reasons.append("Nenhum fator de risco relevante foi identificado")
+    return RiskAnalysisResponse(riskLevel=RiskLevel.BAIXO, reasons=reasons)

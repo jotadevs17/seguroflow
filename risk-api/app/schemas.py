@@ -4,9 +4,9 @@ from pydantic import BaseModel, Field
 
 
 class RiskLevel(str, Enum):
-    LOW = "LOW"
-    MEDIUM = "MEDIUM"
-    HIGH = "HIGH"
+    BAIXO = "BAIXO"
+    MEDIO = "MEDIO"
+    ALTO = "ALTO"
 
 
 class RiskAnalysisRequest(BaseModel):

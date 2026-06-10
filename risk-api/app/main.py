@@ -8,7 +8,7 @@ app = FastAPI()
 
 @app.get("/")
 def health_check():
-    return {"message": "Risk API is running"}
+    return {"message": "API de analise de risco em execucao"}
 
 
 @app.post("/risk-analysis", response_model=RiskAnalysisResponse)
