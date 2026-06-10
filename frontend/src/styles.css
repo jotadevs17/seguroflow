@@ -359,6 +359,27 @@ td:first-child span {
   border-color: #ffc9c1;
 }
 
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  color: #1e6b3d;
+  font-weight: 800;
+  background: #eef8f2;
+  border: 1px solid #b9dec7;
+  border-radius: 8px;
+}
+
+.success-message span {
+  color: var(--ink);
+}
+
+.success-message strong {
+  font-size: 0.88rem;
+}
+
 .modal-backdrop {
   position: fixed;
   z-index: 20;
@@ -435,6 +456,29 @@ td:first-child span {
 
 .claim-form textarea {
   resize: vertical;
+}
+
+.policy-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #f5fbf7;
+  border: 1px solid #cbe6d3;
+  border-radius: 8px;
+}
+
+.policy-summary span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.policy-summary strong {
+  color: var(--ink);
+  font-size: 0.94rem;
 }
 
 .form-grid {
@@ -572,6 +616,12 @@ td:first-child span {
   .claim-modal__header,
   .claim-modal__actions {
     align-items: stretch;
+    flex-direction: column;
+  }
+
+  .success-message,
+  .policy-summary {
+    align-items: flex-start;
     flex-direction: column;
   }
 

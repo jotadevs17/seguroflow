@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { ClaimFormModal } from "../components/ClaimFormModal";
 import { ClaimTable } from "../components/ClaimTable";
+import { RiskBadge } from "../components/RiskBadge";
 import { SummaryCard } from "../components/SummaryCard";
 import { listClaims } from "../services/policyApi";
 import type { Claim, RiskLevel } from "../types/insurance";
@@ -15,6 +16,7 @@ export function ClaimsDashboardPage() {
   const [claims, setClaims] = useState<Claim[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [successClaim, setSuccessClaim] = useState<Claim | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export function ClaimsDashboardPage() {
         const data = await listClaims();
 
         if (isMounted) {
-          setClaims(data);
+          setClaims([...data].sort((first, second) => second.id - first.id));
         }
       } catch (caughtError) {
         if (isMounted) {
@@ -66,10 +68,16 @@ export function ClaimsDashboardPage() {
           <p className="eyebrow">SeguroFlow</p>
           <h1 id="dashboard-title">Painel operacional de sinistros</h1>
           <p>
-            Acompanhe ocorrencias, status de atendimento e prioridade de risco em uma visao simples para apoio a
-            decisao.
+            Plataforma desenvolvida visando reforçar os estudos para vaga de Desenvolvedor Trainee na Confitec. Desenvolvido por João Pedro Ferreira
           </p>
-          <button type="button" className="primary-action" onClick={() => setIsFormOpen(true)}>
+          <button
+            type="button"
+            className="primary-action"
+            onClick={() => {
+              setSuccessClaim(null);
+              setIsFormOpen(true);
+            }}
+          >
             Novo sinistro
           </button>
         </div>
@@ -103,6 +111,14 @@ export function ClaimsDashboardPage() {
             <span>{claims.length} registros</span>
           </div>
 
+          {successClaim && (
+            <div className="success-message" role="status">
+              <span>Sinistro #{successClaim.id} criado</span>
+              <strong>Risco calculado pela API:</strong>
+              <RiskBadge level={successClaim.nivelRisco} />
+            </div>
+          )}
+
           {isLoading && <div className="state-message">Carregando sinistros...</div>}
 
           {!isLoading && error && (
@@ -126,7 +142,11 @@ export function ClaimsDashboardPage() {
       {isFormOpen && (
         <ClaimFormModal
           onClose={() => setIsFormOpen(false)}
-          onCreated={(claim) => setClaims((currentClaims) => [claim, ...currentClaims])}
+          onCreated={(claim) => {
+            setClaims((currentClaims) => [claim, ...currentClaims.filter((currentClaim) => currentClaim.id !== claim.id)]);
+            setSuccessClaim(claim);
+            setError(null);
+          }}
         />
       )}
     </main>
